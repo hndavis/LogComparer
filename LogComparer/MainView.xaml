@@ -1,0 +1,64 @@
+﻿<Window x:Class="LogComparer.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogComparer"
+        mc:Ignorable="d"
+        Title="Compare Log" Height="350" Width="525">
+   
+    <Grid>
+        <Grid.DataContext>
+            <local:MainViewModel />
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"  HorizontalAlignment="Left" Orientation="Horizontal" >
+
+            </StackPanel>
+            <StackPanel Grid.Column="1"    HorizontalAlignment="Left" Orientation="Horizontal" >
+                <Button >Left</Button>
+
+            </StackPanel>
+            <StackPanel Grid.Column="2"    HorizontalAlignment="Left" Orientation="Horizontal" >
+                <Button >Right</Button>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="5"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+               
+            </Grid.ColumnDefinitions>
+            <Grid Name="LeftLog" Grid.Column="0">
+                <DataGrid ItemsSource="{Binding LeftQryLines, NotifyOnTargetUpdated=True}"
+                          TargetUpdated="FrameworkElement_OnTargetUpdated" CanUserResizeColumns="True" 
+          CanUserResizeRows="False" 
+                          
+                            >
+                    
+                </DataGrid>
+            </Grid>
+            <GridSplitter Grid.Column="1" Margin="0,0,100.158,0"></GridSplitter>
+            <Grid Name="RightLog" Grid.Column="2">
+                <DataGrid ItemsSource="{Binding RightQryLines, NotifyOnTargetUpdated=True}" CanUserResizeColumns="True" 
+                            TargetUpdated="FrameworkElement_OnTargetUpdated" 
+          CanUserResizeRows="False" />
+                </Grid>
+          
+        </Grid>
+
+    </Grid>
+</Window>
